@@ -100,6 +100,8 @@ Available options:
         Server name for the SNI (Server Name Indication) TLS extension.
   -x/--excludeErrorStats
         Exclude error statistics (non 2xx http responses) from the final latency and bytes per second averages. default: false.
+  --tf
+        Tasks file path. Content format: '[{url:'',headers:{},body:'',method:''}, ...]
   -v/--version
         Print the version number.
   -h/--help

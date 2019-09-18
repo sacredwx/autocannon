@@ -40,3 +40,5 @@ server.js
 appveyor.yml
 .travis.yml
 .github
+.vscode
+tasks.json

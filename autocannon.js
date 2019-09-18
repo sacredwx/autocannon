@@ -15,6 +15,7 @@ const hasAsyncHooks = require('has-async-hooks')
 const help = fs.readFileSync(path.join(__dirname, 'help.txt'), 'utf8')
 const run = require('./lib/run')
 const track = require('./lib/progressTracker')
+const utils = require('./lib/utils')
 
 if (typeof URL !== 'function') {
   console.error('autocannon requires the WHATWG URL API, but it is not available. Please upgrade to Node 6.13+.')
@@ -57,6 +58,7 @@ function parseArguments (argvs) {
       idReplacement: 'I',
       socketPath: 'S',
       excludeErrorStats: 'x',
+      tasksFile: 'tf',
       help: 'h'
     },
     default: {
@@ -215,6 +217,12 @@ function createChannel (onport) {
 }
 
 function runTracker (argv, ondone) {
+  if (argv.tasksFile) {
+    const tasks = JSON.parse(fs.readFileSync(argv.tasksFile))
+    // Split Tasks to Clients
+    argv.tasks = utils.split_array(tasks, tasks.length / argv.connections)
+  }
+
   const tracker = run(argv)
 
   tracker.on('done', (result) => {

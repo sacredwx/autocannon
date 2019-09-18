@@ -37,3 +37,7 @@ node_modules
 profile-*
 
 .nyc_output
+
+tasks.json
+
+/.vscode
