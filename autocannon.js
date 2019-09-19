@@ -4,8 +4,8 @@
 
 const crossArgv = require('cross-argv')
 const minimist = require('minimist')
-const fs = require('fs')
 const os = require('os')
+const fs = require('fs')
 const net = require('net')
 const path = require('path')
 const URL = require('url').URL
@@ -216,11 +216,12 @@ function createChannel (onport) {
   return { socketPath, server }
 }
 
-function runTracker (argv, ondone) {
+async function runTracker (argv, ondone) {
   if (argv.tasksFile) {
-    const tasks = JSON.parse(fs.readFileSync(argv.tasksFile))
+    const fileContent = await utils.readStreamFile(argv.tasksFile)
+    const tasks = JSON.parse(fileContent)
     // Split Tasks to Clients
-    argv.tasks = utils.split_array(tasks, tasks.length / argv.connections)
+    argv.tasks = utils.splitArray(tasks, tasks.length / argv.connections)
   }
 
   const tracker = run(argv)
