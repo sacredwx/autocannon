@@ -218,9 +218,11 @@ function createChannel (onport) {
 
 async function runTracker (argv, ondone) {
   if (argv.tasksFile) {
-    const tasks = Object.values(await utils.readStreamJSONFile(argv.tasksFile))
+    console.log('Loading file...')
+    const tasks = await utils.readStreamJSONFile(argv.tasksFile)
     // Split Tasks to Clients
-    argv.tasks = utils.splitArray(tasks, tasks.length / parseInt(argv.connections))
+    console.log('Splitting tasks...')
+    argv.tasks = utils.splitArray(tasks, parseInt(argv.connections), Object.keys(tasks).length)
   }
 
   const tracker = run(argv)
