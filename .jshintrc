@@ -1,0 +1,6 @@
+{
+  "esversion": 6,
+  "strict": "global",
+  "asi": true,
+  "node": true
+}
