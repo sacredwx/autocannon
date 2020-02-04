@@ -6,12 +6,8 @@
   "bin": {
     "autocannon": "autocannon.js"
   },
-  "scripts": {
-
-  },
-  "pre-commit": [
-
-  ],
+  "scripts": {},
+  "pre-commit": [],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mcollina/autocannon.git"

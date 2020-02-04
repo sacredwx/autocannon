@@ -220,6 +220,8 @@ async function runTracker (argv, ondone) {
   if (argv.tasksFile) {
     console.log('Loading file...')
     let tasks = Object.values(await utils.readStreamJSONFile(argv.tasksFile))
+    // tasks = tasks.slice(tasks.length/10240*5788,tasks.length/10240*5789) // for slicing input tasks
+    // fs.writeFileSync("try-2.json",JSON.stringify(tasks)) // for writing the current slice to a file
     console.log(`${tasks.length} Read Tasks`)
     // Filter Tasks
     console.log('Filtering Tasks...')
